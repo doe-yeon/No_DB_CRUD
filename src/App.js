@@ -11,29 +11,24 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [lists, setLists] = useState([{}]);
+  const newList = { title: title, content: content };
+  const newLists = [...lists];
+  const updatedList = { title: title, content: content };
 
   return (
     <div className="App">
-      <Button>
-        {/* <Routes>
-          <Route path="/create" element={<Create />} />
-        </Routes> */}
-      </Button>
-      {/* <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">수정</Button>
-        </Card.Body>
-      </Card> */}
+      {/* <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/create" element={<CreatePage />} />
+        <Route path="/read" element={<ReadPage />} />
+      </Routes> */}
 
       <div>
         <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>제목</Form.Label>
+            <Form.Label>글쓰기</Form.Label>
             <Form.Control
               type="text"
               placeholder="제목을 입력하세요"
@@ -41,20 +36,39 @@ function App() {
                 setTitle(e.target.value);
               }}
             />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Example textarea</Form.Label>
-            <Form.Control as="textarea" rows={3} />
-
+            <Form.Control
+              as="textarea"
+              placeholder="내용을 입력하세요"
+              rows={3}
+              onChange={e => {
+                setContent(e.target.value);
+              }}
+            />
             <Button
               onClick={e => {
-                alert(title);
+                alert("title : " + title + "\ncontent : " + content);
+              }}
+              onChange={e => {
+                setContent("");
               }}
             >
-              확인
+              입력
             </Button>
           </Form.Group>
+          <Form.Group
+            className="mb-3"
+            controlId="exampleForm.ControlTextarea1"
+          ></Form.Group>
         </Form>
+        <hr />
+
+        <Card style={{ width: "18rem" }}>
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>{content}</Card.Text>
+            <Button variant="primary">수정</Button>
+          </Card.Body>
+        </Card>
       </div>
     </div>
   );
