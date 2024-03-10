@@ -10,12 +10,11 @@ import { Routes, Route } from "react-router-dom";
 // import Create from "./Create";
 
 function App() {
-  const [title, setTitle] = useState("");
+  const [id, setId] = useState("");
+  const [title, setTitle] = useState(["오늘의 일기"]);
   const [content, setContent] = useState("");
-  const [lists, setLists] = useState([{}]);
-  const newList = { title: title, content: content };
-  const newLists = [...lists];
-  const updatedList = { title: title, content: content };
+
+  const newList = { id: id, title: title, content: content };
 
   return (
     <div className="App">
@@ -48,9 +47,6 @@ function App() {
               onClick={e => {
                 alert("title : " + title + "\ncontent : " + content);
               }}
-              onChange={e => {
-                setContent("");
-              }}
             >
               입력
             </Button>
@@ -64,9 +60,16 @@ function App() {
 
         <Card style={{ width: "18rem" }}>
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
-            <Card.Text>{content}</Card.Text>
-            <Button variant="primary">수정</Button>
+            <Card.Title>{newList.title}</Card.Title>
+            <Card.Text>{newList.content}</Card.Text>
+            <Button
+              variant="primary"
+              onClick={e => {
+                alert("수정시작");
+              }}
+            >
+              수정
+            </Button>
           </Card.Body>
         </Card>
       </div>
